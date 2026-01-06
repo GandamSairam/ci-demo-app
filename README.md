@@ -31,3 +31,30 @@ If any stage fails (especially tests), the pipeline stops and reports failure.
 ```bash
 npm install
 npm start
+
+
+---
+
+## 🚢 Kubernetes Deployment (Task 2)
+
+The application is containerized using Docker and deployed to a local Kubernetes cluster using Minikube.
+
+### Kubernetes Resources Used
+- **Deployment**: Manages application replicas and rolling updates
+- **Service (NodePort)**: Exposes the application
+- **ConfigMap**: Stores non-sensitive configuration
+- **Secret**: Stores sensitive configuration
+- **Liveness & Readiness Probes**: Ensure application health and availability
+
+### Deployment Steps
+
+```bash
+minikube start --driver=docker
+eval $(minikube docker-env)
+
+docker build -t ci-demo-app:1.0 .
+
+kubectl apply -f k8s/configmap.yaml
+kubectl apply -f k8s/secret.yaml
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
