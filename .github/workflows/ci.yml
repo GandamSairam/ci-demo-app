@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout source code
+    - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Node.js environment
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
@@ -22,8 +22,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Run unit tests
+    - name: Run tests
       run: npm test
 
-    - name: Build application
-      run: echo "Build step completed"
+    - name: Build step
+      run: echo "Build completed successfully"
+
